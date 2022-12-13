@@ -29,7 +29,7 @@ Created in order to provide a uniform way to preform and mange your application 
 - to wrap as a npm package use ```npm run build```
   (don't forget to bump if needed)
 - to run in "dev" mode with file watch use ```npm run dev```
-- to re-build the docs run ```npm run docs```
+- to re-build the docs run ```npm run doc```
 - "main" folder containing the transpiled files
 - development is done on files in```/src/lib```
 - some example filters can be found in ```/src/lib/assets/filters```

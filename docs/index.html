@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>filters-manger</title>
+	<meta name="description" content="Documentation for filters-manger">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">filters-manger</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>filters-manger</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p>This is one package (out of 3) in a
+					<a href="https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14">JQL</a> like feature..
+					Want to know more?
+					<br/>
+					<br/>
+					I&#39;m looking for my next challenge:
+					<br/>
+					Mail: <a href="mailto:tidharwin@gmail.com">tidharwin@gmail.com</a>
+					<br/>
+				Linkedin: <a href="https://www.linkedin.com/in/tidharw/">https://www.linkedin.com/in/tidharw/</a>*</p>
+				<a href="#filter-manger" id="filter-manger" style="color: inherit; text-decoration: none;">
+					<h1>Filter Manger</h1>
+				</a>
+				<p>Reviewers: </p>
+				<ul>
+					<li>Aviv B</li>
+				</ul>
+				<p>Created in order to provide a uniform way to preform and mange your application validations and fillers.</p>
+				<ul>
+					<li>Validations can be saved in a File/In-memory/DB</li>
+					<li>All Validations must maintain the <code>IRawFilter</code> interface ( <code>{ [Filter Name]: [Rules] }</code> )</li>
+					<li>This package can be wrap as a npm package and can be used both in the client (js/angular/react/etc..) and on a node server</li>
+					<li>Client: you will probably want to get the filters &quot;Raw data&quot; from the server/instantiate the filters in-memory</li>
+					<li>Server: You can load the filters from files (have access to the fs) / fetch it from the DB</li>
+				</ul>
+				<p>! Mange the filters in the server
+					Fetch the filters using a request to BE and
+				Use the package in both to instantiate the filters</p>
+				<a href="#dev" id="dev" style="color: inherit; text-decoration: none;">
+					<h2>Dev</h2>
+				</a>
+				<ul>
+					<li>to wrap as a npm package use <code>npm run build</code>
+					(don&#39;t forget to bump if needed)</li>
+					<li>to run in &quot;dev&quot; mode with file watch use <code>npm run dev</code></li>
+					<li>to re-build the docs run <code>npm run doc</code></li>
+					<li>&quot;main&quot; folder containing the transpiled files</li>
+					<li>development is done on files in<code>/src/lib</code></li>
+					<li>some example filters can be found in <code>/src/lib/assets/filters</code></li>
+				</ul>
+				<pre><code class="language-ts">
+<span style="color: #008000">// Loading the filters from a *.json file </span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">path</span><span style="color: #000000"> = </span><span style="color: #001080">__dirname</span><span style="color: #000000"> + </span><span style="color: #A31515">&#039;/lib/assets/&#039;</span>
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">filleName</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;filters.json&#039;</span>
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">data</span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000"> = </span><span style="color: #795E26">readFileSync</span><span style="color: #000000">(</span><span style="color: #001080">path</span><span style="color: #000000"> + </span><span style="color: #001080">filleName</span><span style="color: #000000">)</span>
+<span style="color: #001080">data</span><span style="color: #000000"> = </span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">())</span>
+<span style="color: #008000">// Instantiating the FilterManger</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">FM</span><span style="color: #000000">: </span><span style="color: #267F99">FilterManger</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">FilterManger</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Listing the filters name</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Listing the filters name: getFiltersList() &#039;</span><span style="color: #000000">, </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFiltersList</span><span style="color: #000000">());</span>
+<span style="color: #008000">// In-memory filter, ready to be used</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">numbersOnly</span><span style="color: #000000"> = </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFilterByName</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;numbersOnly&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">includesNumbers</span><span style="color: #000000"> = </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFilterByName</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;includesNumbers&#039;</span><span style="color: #000000">)</span>
+
+<span style="color: #008000">// Validating different inputs against the  </span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;numbersOnly&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">numbersOnly</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;2&quot;</span><span style="color: #000000">)); </span><span style="color: #008000">// true  </span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">numbersOnly</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;2Be&quot;</span><span style="color: #000000">)); </span><span style="color: #008000">// false</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">numbersOnly</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0rN0t &quot;</span><span style="color: #000000">));</span><span style="color: #008000">// false</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;includesNumbers&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">includesNumbers</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc&#039;</span><span style="color: #000000">));</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">includesNumbers</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;abc5&#039;</span><span style="color: #000000">));</span>
+
+<span style="color: #008000">// Add new filter (In-memory) </span>
+<span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">addFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hostName&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9</span><span style="color: #EE0000">\-</span><span style="color: #A31515">ֿֿֿֿֿֿ_]*[a-zA-Z0-9])</span><span style="color: #EE0000">\.</span><span style="color: #A31515">)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9</span><span style="color: #EE0000">\-</span><span style="color: #A31515">_]*[A-Za-z0-9])$&quot;</span><span style="color: #000000">])</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hostName is now available: getFiltersList() &#039;</span><span style="color: #000000">, </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFiltersList</span><span style="color: #000000">());</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hostName</span><span style="color: #000000"> = </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFilterByName</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hostName&#039;</span><span style="color: #000000">)</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hostName&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">hostName</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;b.com&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// true </span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">hostName</span><span style="color: #000000">?.</span><span style="color: #795E26">isValid</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;b.%com&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// false</span>
+
+<span style="color: #008000">// Remove filter </span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Remove &#039;hostName&#039; filter &quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">removeFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hostName&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// true </span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">removeFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hostName&#039;</span><span style="color: #000000">)); </span><span style="color: #008000">// false -&gt; What was removed can be removed</span>
+
+<span style="color: #008000">// Getting the most updated filter&#039;s list in a (stringify) json format</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Getting the most updated filter&#039;s list in a (stringify) json format &quot;</span><span style="color: #000000">, </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">());</span>
+<span style="color: #008000">// Updating / Creating filters file</span>
+<span style="color: #008000">// writeFileSync(path + &#039;filtersV2.json&#039;, FM.stringify(), &#039;utf-8&#039;);</span>
+
+<span style="color: #008000">// Revert</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Restore the filters to their original sate (in-memory) &quot;</span><span style="color: #000000">);</span>
+<span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">addFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isTeddy&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;/bear/gm&quot;</span><span style="color: #000000">])</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Adding &quot;isTeddy&quot; filter&#039;</span><span style="color: #000000">, </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFiltersList</span><span style="color: #000000">());</span>
+<span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">addFilter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;isWienreb&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&quot;/Wienreb/gm&quot;</span><span style="color: #000000">])</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Adding &quot;isWienreb&quot; filter&#039;</span><span style="color: #000000">, </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFiltersList</span><span style="color: #000000">());</span>
+<span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">revert</span><span style="color: #000000">()</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;After revert() &#039;</span><span style="color: #000000">, </span><span style="color: #0070C1">FM</span><span style="color: #000000">.</span><span style="color: #795E26">getFiltersList</span><span style="color: #000000">());</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/consts_errors_const.html">consts/errors.const</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/filter_manger.html">filter-<wbr>manger</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_filter_class.html">models/filter.class</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_filter_interface.html">models/filter.interface</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
