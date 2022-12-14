@@ -1,10 +1,11 @@
 
+WIP:
+- tests
+
 This is one package (out of 3) in a
 [JQL](https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14) like feature..
 Want to know more?
 <br/>
-<br/>
-I'm looking for my next challenge:
 <br/>
 Mail: tidharwin@gmail.com
 <br/>
