@@ -1,11 +1,11 @@
 import "jasmine";
 
 import {FilterManger} from "./filter-manger";
+import {FilterAllReadyExists, NoFilterWasFound} from "./consts/errors.const";
+import {Filter} from "./models/filter.class";
 
 const filtersMock = {
-    "numbersOnly": ["^[0-9]*$"],
-    "includesUpperCase": ["[A-Z]"],
-    "includesNumbers": ["\\d"],
+    "numbersOnly": ["^[0-9]*$"], "includesUpperCase": ["[A-Z]"], "includesNumbers": ["\\d"],
 }
 
 describe("Filter", () => {
@@ -18,4 +18,69 @@ describe("Filter", () => {
     it("FilterManger should be instantiated", () => {
         expect(FM).toBeDefined();
     });
+
+    describe('getFiltersList', () => {
+        it("should return filters name", () => {
+            const expected = ['numbersOnly', 'includesUpperCase', 'includesNumbers'];
+            expect(FM.getFiltersList()).toEqual(expected)
+        });
+    })
+
+    describe('getFilterByName', () => {
+        it("should return the filter's instance", () => {
+            const expected = FM['_filters']['numbersOnly'];
+            const input = FM.getFilterByName('numbersOnly');
+            expect(input).toEqual(expected)
+            expect(input.rules).toEqual(["^[0-9]*$"])
+            expect(input.name).toEqual('numbersOnly')
+        });
+
+        it("should throw an error when not found", () => {
+            try {
+                expect(FM.getFilterByName('NaN')).toThrowError()
+            } catch (err: any) {
+                expect(err.message).toEqual(NoFilterWasFound('NaN').message)
+            }
+        });
+    })
+
+    describe('addFilter', () => {
+        let createdFilter: Filter;
+        beforeEach(() => {
+            FM.addFilter('example', ["/abc/"])
+            createdFilter = FM.getFilterByName('example')
+        })
+
+        it("should create a new Filter instance", () => {
+            expect(createdFilter).toBeDefined()
+        });
+
+        it("example filter should contain the right rules", () => {
+            expect(FM.getFilterByName('example').rules).toEqual(['/abc/'])
+        })
+
+        it("example filter should not be overwritten when exists", () => {
+            try {
+                expect(FM.addFilter('example', ["/abc/"])).toThrowError()
+            } catch (err: any) {
+                expect(err.message).toEqual(FilterAllReadyExists('example').message)
+            }
+        })
+    })
+
+    describe('removeFilter', () => {
+        let deleteResponse: boolean
+        beforeEach(() => {
+            deleteResponse = FM.removeFilter('numbersOnly')
+        })
+
+        it("should delete 'numbersOnly' filter", () => {
+            expect(deleteResponse).toEqual(true)
+            expect(FM.getFiltersList().includes('numbersOnly')).toEqual(false)
+        })
+
+        it("should return false when the filter was not found", () => {
+            expect(FM.removeFilter('numbersOnly')).toEqual(false)
+        })
+    })
 });

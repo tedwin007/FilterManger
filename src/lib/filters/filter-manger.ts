@@ -29,7 +29,7 @@ export class FilterManger {
      * Get Filter By Name
      * @param name
      */
-    getFilterByName(name: string): Error | Filter {
+    getFilterByName(name: string): Filter {
         const result = this._filters[name];
         if (!result) {
             throw NoFilterWasFound(name)
