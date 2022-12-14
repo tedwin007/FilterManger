@@ -35,12 +35,10 @@ export class Filter implements BaseFilter {
         for (let i = 0; i < this.rules.length && isValid; i++) {
             const rule = new RegExp(this.rules[i]);
             isValid = rule.test(value)
-            if(!isValid){
+            if (!isValid) {
                 console.log(FailedValidationError(value, this.rules[i]))
             }
         }
         return isValid
     }
-
-
 }
