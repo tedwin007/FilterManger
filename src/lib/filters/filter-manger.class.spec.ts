@@ -3,6 +3,7 @@ import "jasmine";
 import {FilterManger} from "./filter-manger";
 import {FilterAllReadyExists, NoFilterWasFound} from "./consts/errors.const";
 import {Filter} from "./models/filter.class";
+import {IRawFilter} from "./models/filter.interface";
 
 const filtersMock = {
     "numbersOnly": ["^[0-9]*$"], "includesUpperCase": ["[A-Z]"], "includesNumbers": ["\\d"],
@@ -82,5 +83,42 @@ describe("Filter", () => {
         it("should return false when the filter was not found", () => {
             expect(FM.removeFilter('numbersOnly')).toEqual(false)
         })
+    })
+
+    describe('stringify', () => {
+        let stringifyResult: string
+        beforeEach(() => {
+            stringifyResult = FM.stringify();
+        })
+
+        it('should return the filters in a "IRawFilter" (string) form', () => {
+            const expected = '{"numbersOnly":["^[0-9]*$"],"includesUpperCase":["[A-Z]"],"includesNumbers":["\\\\d"]}';
+            expect(stringifyResult).toEqual(expected)
+        });
+    })
+
+    describe('toJSON', () => {
+        let toJSONResult: IRawFilter
+        beforeEach(() => {
+            toJSONResult = FM.toJSON();
+        })
+
+        it('should return the filters in a "IRawFilter" (object) form', () => {
+            const expected: any = {numbersOnly: ['^[0-9]*$'], includesUpperCase: ['[A-Z]'], includesNumbers: ['\\d']};
+            expect(toJSONResult).toEqual(expected)
+        })
+    })
+
+    describe('revert', () => {
+        beforeEach(() => {
+            FM.addFilter('example', ["/abc/"])
+            FM.removeFilter('numbersOnly')
+            FM.revert();
+        })
+
+        it('should return the original filters list', () => {
+            const expected = ['numbersOnly', 'includesUpperCase', 'includesNumbers'];
+            expect(FM.getFiltersList()).toEqual(expected)
+        });
     })
 });

@@ -84,8 +84,8 @@ export class FilterManger {
      * toJSON
      * transform the filters to a single JSON object
      */
-    toJSON() {
-        let res: any = {}
+    toJSON(): IRawFilter {
+        let res: IRawFilter = {}
         for (const key in this._filters) {
             res = {...res, ...this._filters[key].toJson()}
         }
