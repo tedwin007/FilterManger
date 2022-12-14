@@ -1,19 +1,13 @@
 
-WIP:
-- tests
-
 This is one package (out of 3) in a
 [JQL](https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14) like feature..
-Want to know more?
-<br/>
+
 <br/>
 Mail: tidharwin@gmail.com
 <br/>
-Linkedin: https://www.linkedin.com/in/tidharw/*
+Linkedin: https://www.linkedin.com/in/tidharw/
 
 # Filter Manger 
-Reviewers: 
- - Aviv B
 
 Created in order to provide a uniform way to preform and mange your application validations and fillers.
 - Validations can be saved in a File/In-memory/DB
