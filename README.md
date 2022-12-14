@@ -9,7 +9,7 @@ Linkedin: https://www.linkedin.com/in/tidharw/
 
 # Filter Manger 
 
-Created in order to provide a uniform way to preform and mange your application validations and fillers.
+provide a uniform way to manage your application validations and fillers.
 - Validations can be saved in a File/In-memory/DB
 - All Validations must maintain the ```IRawFilter``` interface ( ```{ [Filter Name]: [Rules] }``` )
 - This package can be wrap as a npm package and can be used both in the client (js/angular/react/etc..) and on a node server
